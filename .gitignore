@@ -1,0 +1,36 @@
+# Ignore Terraform state files
+*.tfstate
+*.tfstate.*
+
+# Ignore crash log files
+crash.log
+
+# Ignore Terraform variable files with sensitive data
+*.tfvars
+*.tfvars.json
+
+# Ignore Terraform plan files
+*.tfplan
+
+# Ignore override files, typically used locally and not meant for version control
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Ignore module and provider downloads
+.terraform/
+.terraform.lock.hcl
+
+# Ignore output from `terraform apply` stored locally
+terraform.tfstate.backup
+terraform.tfstate.backups
+
+# Ignore any private SSH keys (if you store them locally)
+*.pem
+*.key
+
+# Ignore IDE and editor-specific files (adjust based on your editor)
+.idea/
+.vscode/
+*.
