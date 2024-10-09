@@ -16,20 +16,29 @@ resource "aws_subnet" "frontendpublic" {
 }
 
 resource "aws_subnet" "backendprivate" {
-  vpc_id     = aws_vpc.main.id
-  cidr_block = var.private_subnet_cidr
-
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = var.private_subnet_cidr
+  availability_zone = "us-east-1a"
   tags = {
     Name = "backend_private"
   }
 }
 
 resource "aws_subnet" "rds_subnet" {
-  vpc_id                  = aws_vpc.main.id  # Ensure your VPC is correctly referenced
-  cidr_block              = "10.0.3.0/24"    # Specify an appropriate CIDR block for your RDS subnet
-  
+  vpc_id            = aws_vpc.main.id # Ensure your VPC is correctly referenced
+  cidr_block        = "10.0.3.0/24"   # Specify an appropriate CIDR block for your RDS subnet
+  availability_zone = "us-east-1b"
   tags = {
     Name = "rds-subnet"
+  }
+}
+
+resource "aws_db_subnet_group" "rds_subnet_group" {
+  name       = "my-rds-subnet-group"
+  subnet_ids = [aws_subnet.rds_subnet.id, aws_subnet.backendprivate.id, aws_subnet.frontendpublic.id]
+
+  tags = {
+    Name = "My RDS Subnet Group"
   }
 }
 

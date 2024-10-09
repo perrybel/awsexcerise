@@ -19,7 +19,7 @@ output "ec2_public_ip" {
 }
 
 output "vpc_name" {
-  value = aws_vpc.main.tags["Name"] 
+  value = aws_vpc.main.tags["Name"]
 }
 
 # Output for lightsail

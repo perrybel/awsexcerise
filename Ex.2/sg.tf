@@ -61,10 +61,10 @@ resource "aws_security_group" "ec2_sg" {
 
   # Allow inbound traffic from the RDS security group
   ingress {
-    from_port   = 5432  # PostgreSQL default port
+    from_port   = 5432 # PostgreSQL default port
     to_port     = 5432
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]  # Adjust this to limit access if needed
+    cidr_blocks = ["0.0.0.0/0"] # Adjust this to limit access if needed
   }
 
   # Outbound traffic
@@ -92,7 +92,7 @@ resource "aws_security_group" "rds_sg" {
     from_port       = 5432
     to_port         = 5432
     protocol        = "tcp"
-    security_groups = [aws_security_group.ec2_sg.id]
+    security_groups = [aws_security_group.ec2_sg.id,aws_security_group.public_sg_new.id]
   }
 
   # Outbound traffic

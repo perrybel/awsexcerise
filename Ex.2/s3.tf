@@ -11,7 +11,7 @@ resource "aws_s3_bucket" "app_backup" {
 resource "aws_iam_policy" "s3_backup_policy" {
   name        = "s3-backup-policy"
   description = "Allow EC2 to write application backups to S3"
-  policy      = jsonencode({
+  policy = jsonencode({
     Version = "2012-10-17",
     Statement = [
       {
@@ -28,7 +28,7 @@ resource "aws_iam_policy" "s3_backup_policy" {
 
 # IAM role for EC2
 resource "aws_iam_role" "ec2_backup_role" {
-  name               = "ec2-backup-role"
+  name = "ec2-backup-role"
   assume_role_policy = jsonencode({
     Version = "2012-10-17",
     Statement = [

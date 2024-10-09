@@ -49,16 +49,17 @@ resource "aws_instance" "publicpage" {
 
 # Define the RDS instance
 resource "aws_db_instance" "rds_sg1" {
-  identifier         = "my-postgres-db"
-  engine             = "postgres"  # Use "mysql" for MySQL
-  instance_class     = "db.t3.micro" # Change this based on your needs
-  allocated_storage   = 20  # Minimum for PostgreSQL
-  db_name            = "mydatabase"
-  username           = "dbadmin"
-  password           = "yourpassword" # Use a secure method to handle this (e.g., Terraform Vault)
-
-  skip_final_snapshot = true  # Set to false in production for data safety
-
+  identifier             = "my-postgres-db"
+  engine                 = "postgres"    # Use "mysql" for MySQL
+  instance_class         = "db.t3.micro" # Change this based on your needs
+  allocated_storage      = 20            # Minimum for PostgreSQL
+  db_name                = "mydatabase"
+  username               = "dbadmin"
+  password               = "yourpassword" # Use a secure method to handle this (e.g., Terraform Vault)
+  vpc_security_group_ids = [aws_security_group.rds_sg.id]
+  db_subnet_group_name   = aws_db_subnet_group.rds_subnet_group.name
+  skip_final_snapshot    = true # Set to false in production for data safety
+  depends_on             = [aws_security_group.rds_sg]
   tags = {
     Name = "MyPostgresDB"
   }
