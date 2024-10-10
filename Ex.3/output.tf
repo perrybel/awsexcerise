@@ -27,3 +27,12 @@ output "ec2_public2_ip" {
 output "vpc_name" {
   value = aws_vpc.main.tags["Name"] 
 }
+
+
+output "aws_efs_mount_target1" {
+  value = aws_efs_mount_target.my_efs_us-east-1b.ip_address
+}
+
+output "aws_efs_mount_target" {
+  value = aws_efs_mount_target.my_efs_us-east-1a.ip_address
+}

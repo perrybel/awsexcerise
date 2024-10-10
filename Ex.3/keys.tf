@@ -11,4 +11,5 @@ resource "aws_key_pair" "ec2_key" {
 resource "local_file" "ssh_key" {
   filename = "keypair.pem"
   content  = tls_private_key.ec2_key.private_key_pem
+  
 }
