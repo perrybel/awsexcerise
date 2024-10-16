@@ -1,0 +1,46 @@
+variable "region" {
+  description = "The AWS region to deploy the infrastructure"
+  type        = string
+  default     = "us-east-1"
+}
+
+variable "vpc_cidr" {
+  description = "The CIDR block for the VPC"
+  type        = string
+  default     = "10.0.0.0/16"
+}
+
+variable "public_subnet_cidr" {
+  description = "The CIDR block for the public subnet"
+  type        = string
+  default     = "10.0.1.0/24"
+}
+
+
+
+variable "public_subnet" {
+  description = "The CIDR block for the public subnet"
+  type        = string
+  default     = "10.0.1.0/24"
+}
+
+
+variable "plublic_subnet2_cidr" {
+  description = "The CIDR block for the public2 subnet"
+  type        = string
+  default     = "10.0.2.0/24"
+}
+
+
+variable "instance_type" {
+  description = "The type of EC2 instance"
+  type        = string
+  default     = "t2.micro"
+}
+
+
+variable "aws_security_group" {
+  description = "public_sg"
+  type        = string
+  default     = "public-security-group"
+}
